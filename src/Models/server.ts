@@ -18,6 +18,7 @@ class Server {
         this.port = process.env.PORT || '3000';
         this.routes();
         this.connectDB();
+        this.middlewares();
     }
 
     routes(){
@@ -32,7 +33,8 @@ class Server {
 
     middlewares(){
         this.app.use(express.json);
-        this.app.use(morgan('dev'));
+        this.app.use(express.urlencoded({extended:false}));
+        this.app.use(morgan("dev"));
         this.app.use(cors());
     }
 
